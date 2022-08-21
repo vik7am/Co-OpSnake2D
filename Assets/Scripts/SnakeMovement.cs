@@ -6,9 +6,12 @@ public class SnakeMovement : MonoBehaviour
 {
     bool alive;
     Vector3 direction;
+    Vector3 previousDirection;
+    bool horizontalMovement;
     int snakeLength = 3;
     List<Transform> snake;
     [SerializeField] GameObject tailPrefab;
+    [SerializeField] GameOverUI gameOverUI;
 
     void Start()
     {
@@ -19,7 +22,9 @@ public class SnakeMovement : MonoBehaviour
     private void SpawnSnake()
     {
         alive = true;
+        horizontalMovement = true;
         direction = Vector3.right;
+        previousDirection = direction;
         snake = new List<Transform>();
         snake.Add(this.transform);
         for (int i = 0; i < snakeLength; i++)
@@ -28,14 +33,18 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-            direction = Vector3.left;
-        else if (Input.GetKeyDown(KeyCode.D))
-            direction = Vector3.right;
-        else if (Input.GetKeyDown(KeyCode.W))
-            direction = Vector3.up;
-        else if (Input.GetKeyDown(KeyCode.S))
-            direction = Vector3.down;
+        if(horizontalMovement){
+            if (Input.GetKeyDown(KeyCode.W))
+                direction = Vector3.up;
+            else if (Input.GetKeyDown(KeyCode.S))
+                direction = Vector3.down;
+        }
+        else{
+            if (Input.GetKeyDown(KeyCode.A))
+                direction = Vector3.left;
+            else if (Input.GetKeyDown(KeyCode.D))
+                direction = Vector3.right;
+        }
     }
 
     IEnumerator GameLoop()
@@ -45,7 +54,12 @@ public class SnakeMovement : MonoBehaviour
             for (int i = 1; i < snake.Count ; i++)
                 snake[snake.Count -i].position = snake[snake.Count -(i+1)].position;
             transform.position += direction;
-            yield return new WaitForSeconds(0.2f);
+            if(previousDirection != direction){
+                horizontalMovement = !horizontalMovement;
+                previousDirection = direction;
+            }
+            yield return new WaitForSeconds(0.25f);
+            
         }
     }
 
@@ -55,5 +69,6 @@ public class SnakeMovement : MonoBehaviour
 
     public void KillSnake(){
         alive = false;
+        gameOverUI.gameObject.SetActive(true);
     }
 }
