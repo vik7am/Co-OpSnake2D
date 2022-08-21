@@ -8,20 +8,23 @@ public class SnakeMovement : MonoBehaviour
     Vector3 direction;
     Vector3 previousDirection;
     bool horizontalMovement;
+    bool pauseGame;
     int snakeLength = 3;
     List<Transform> snake;
     [SerializeField] GameObject tailPrefab;
     [SerializeField] GameOverUI gameOverUI;
+    [SerializeField] GamePauseUI gamePauseUI;
 
     void Start()
     {
         SpawnSnake();
-        StartCoroutine(GameLoop());
+        ResumeGame();
     }
 
     private void SpawnSnake()
     {
         alive = true;
+        pauseGame = false;
         horizontalMovement = true;
         direction = Vector3.right;
         previousDirection = direction;
@@ -33,6 +36,14 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
+        MovementDirectionInput();
+        PaueGameInput();
+        
+    }
+
+    void MovementDirectionInput(){
+        if(pauseGame)
+            return;
         if(horizontalMovement){
             if (Input.GetKeyDown(KeyCode.W))
                 direction = Vector3.up;
@@ -47,9 +58,17 @@ public class SnakeMovement : MonoBehaviour
         }
     }
 
+    void PaueGameInput(){
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            pauseGame = true;
+            gamePauseUI.gameObject.SetActive(true);
+        }
+            
+    }
+
     IEnumerator GameLoop()
     {
-        while (alive)
+        while (alive && !pauseGame)
         {
             for (int i = 1; i < snake.Count ; i++)
                 snake[snake.Count -i].position = snake[snake.Count -(i+1)].position;
@@ -59,7 +78,6 @@ public class SnakeMovement : MonoBehaviour
                 previousDirection = direction;
             }
             yield return new WaitForSeconds(0.25f);
-            
         }
     }
 
@@ -70,5 +88,12 @@ public class SnakeMovement : MonoBehaviour
     public void KillSnake(){
         alive = false;
         gameOverUI.gameObject.SetActive(true);
+    }
+
+    public void ResumeGame(){
+        pauseGame = false;
+        gamePauseUI.gameObject.SetActive(false);
+        StartCoroutine(GameLoop());
+        
     }
 }
