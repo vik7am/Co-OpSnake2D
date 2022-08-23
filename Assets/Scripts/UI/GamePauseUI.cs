@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +5,7 @@ public class GamePauseUI : MonoBehaviour
 {
     [SerializeField]Button resume;
     [SerializeField]Button exit;
-    [SerializeField]SnakeMovement snake;
+    [SerializeField]SnakeController snake;
 
     void Awake()
     {

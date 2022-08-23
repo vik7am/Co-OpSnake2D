@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Egg : MonoBehaviour
@@ -12,11 +10,11 @@ public class Egg : MonoBehaviour
     }
     
     private void OnTriggerEnter2D(Collider2D collision) {
-        SnakeMovement snake = collision.GetComponent<SnakeMovement>();
+        SnakeController snake = collision.GetComponent<SnakeController>();
         if (snake == null)
             return;
-        eggSpawner.IncreseScore(score);
+        snake.IncreseScore(score);
         eggSpawner.SpawnEgg();
-        snake.IncreseLength();
+        snake.IncreseLength(1);
     }
 }

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Tail : MonoBehaviour
+public class Body : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other) {
-        SnakeMovement snake = other.GetComponent<SnakeMovement>();
+        SnakeController snake = other.GetComponent<SnakeController>();
         if(snake ==null)
             return;
         snake.KillSnake();

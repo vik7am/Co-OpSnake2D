@@ -170,7 +170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   egg: {fileID: 1594693185}
   box: {fileID: 1331786249}
-  scoreUI: {fileID: 458705121}
 --- !u!1 &46423744
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resume: {fileID: 1293253227}
   exit: {fileID: 1232228302}
-  snake: {fileID: 1246434208}
+  snake: {fileID: 1246434212}
 --- !u!1 &134375945
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,21 +596,9 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3477846522547270397, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: score
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1452,7 +1439,11 @@ GameObject:
   - component: {fileID: 1246434206}
   - component: {fileID: 1246434210}
   - component: {fileID: 1246434209}
+  - component: {fileID: 1246434212}
+  - component: {fileID: 1246434211}
   - component: {fileID: 1246434208}
+  - component: {fileID: 1246434213}
+  - component: {fileID: 1246434214}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Player
@@ -1534,12 +1525,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1246434205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa9b9ff6b04c0d240b8ca76ca282d01d, type: 3}
+  m_Script: {fileID: 11500000, guid: f3a41f47f977e804d8be0498f8f1a1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tailPrefab: {fileID: 9079915535133434231, guid: 070e4d34c06b6da4889447db144c236d, type: 3}
-  gameOverUI: {fileID: 2068080174}
-  gamePauseUI: {fileID: 70589249}
+  bodyPrefab: {fileID: 9079915535133434231, guid: 070e4d34c06b6da4889447db144c236d, type: 3}
 --- !u!50 &1246434209
 Rigidbody2D:
   serializedVersion: 4
@@ -1587,6 +1576,60 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
+--- !u!114 &1246434211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246434205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4b028e45592004aa5b23785b38508f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
+--- !u!114 &1246434212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246434205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c564deb2df93d409516f06d199ae77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialSnakeLength: 3
+  gameOverUI: {fileID: 2068080174}
+  gamePauseUI: {fileID: 70589249}
+--- !u!114 &1246434213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246434205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4c3ef7da4d44a4882b9294713074c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  box: {fileID: 1331786249}
+--- !u!114 &1246434214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246434205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced66686f58ccf345be2bb12dc75a765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreUI: {fileID: 458705121}
 --- !u!1 &1293253225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,7 +1761,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1331786248}
   - component: {fileID: 1331786249}
-  - component: {fileID: 1331786250}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -1770,18 +1812,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 28, y: 14}
   m_EdgeRadius: 0
---- !u!114 &1331786250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331786247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff4c3ef7da4d44a4882b9294713074c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1508427471
 GameObject:
   m_ObjectHideFlags: 0
