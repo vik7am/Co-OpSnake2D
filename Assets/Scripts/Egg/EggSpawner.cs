@@ -12,7 +12,7 @@ public class EggSpawner : MonoBehaviour
     void Start()
     {
         bounds = box.bounds;
-        box.gameObject.SetActive(false);
+        //box.gameObject.SetActive(false);
         SpawnEgg();
     }
 

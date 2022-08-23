@@ -7,7 +7,7 @@ public class Wall : MonoBehaviour
     enum Direction{UP, DOWN, LEFT, RIGHT};
     [SerializeField]Direction direction;
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    /*private void OnTriggerEnter2D(Collider2D other) {
         SnakeMovement snake = other.GetComponent<SnakeMovement>();
         if(snake ==null)
             return;
@@ -25,5 +25,5 @@ public class Wall : MonoBehaviour
             snake.transform.position = new Vector2(-(snake.transform.position.x-1), snake.transform.position.y);
             break;
         }
-    }
+    }*/
 }
