@@ -19,6 +19,7 @@ public class SnakeController : MonoBehaviour
     Movement movement;
     Health health;
     ScoreManager scoreManager;
+    SpecialAbilityManager managerSA;
 
     private void Awake() {
         snake = new Snake();
@@ -26,8 +27,10 @@ public class SnakeController : MonoBehaviour
         movement = GetComponent<Movement>();
         health = GetComponent<Health>();
         scoreManager = GetComponent<ScoreManager>();
+        managerSA = GetComponent<SpecialAbilityManager>();
         movement.setSnake(snake);
         health.setSnake(snake);
+        managerSA.setSnake(snake);
         health.IncreseLength(initialSnakeLength);
     }
 
@@ -48,6 +51,12 @@ public class SnakeController : MonoBehaviour
             movement.StopMovement();
             gamePauseUI.gameObject.SetActive(true);
         }
+        if(Input.GetKeyDown(KeyCode.Space)){
+            //managerSA.activateSpecialAbility(SpecialAbility.SHIELD);
+            //managerSA.activateSpecialAbility(SpecialAbility.SCORE_BOOST);
+            managerSA.activateSpecialAbility(SpecialAbility.SPEED_UP);
+            UpdateSpeed();
+        }
     }
 
     public void ResumeGame(){
@@ -56,6 +65,8 @@ public class SnakeController : MonoBehaviour
     }
 
     public void KillSnake(){
+        if(managerSA.specialAbilityStatus(SpecialAbility.SHIELD))
+            return;
         health.KillSnake();
         movement.StopMovement();
         gameOverUI.gameObject.SetActive(true);
@@ -66,6 +77,12 @@ public class SnakeController : MonoBehaviour
     }
 
     public void IncreseScore(int score){
+        if(managerSA.specialAbilityStatus(SpecialAbility.SCORE_BOOST))
+            score = managerSA.GetSpecialScore(score);
         scoreManager.IncreseScore(score);
+    }
+
+    public void UpdateSpeed(){
+        movement.SpeedBoost(managerSA.GetSpeedMultiplier());
     }
 }

@@ -39,6 +39,11 @@ public class Movement : MonoBehaviour
         this.snake = snake;
     }
 
+    public void SpeedBoost(float speedBoost){
+        waitDuration = 1.0f/(speed * speedBoost);
+        
+    }
+
     void MovementDirectionInput(){
         if(horizontalMovement){
             if (Input.GetKeyDown(KeyCode.W))
