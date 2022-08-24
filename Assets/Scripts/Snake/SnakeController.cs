@@ -76,6 +76,10 @@ public class SnakeController : MonoBehaviour
         health.IncreseLength(length);
     }
 
+    public void DecreaseLength(int length){
+        health.DecreaseLength(length);
+    }
+
     public void IncreseScore(int score){
         if(managerSA.specialAbilityStatus(SpecialAbility.SCORE_BOOST))
             score = managerSA.GetSpecialScore(score);

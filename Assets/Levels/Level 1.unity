@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97ffcd24e4e5c74399172deff70f9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  egg: {fileID: 1594693185}
+  egg: {fileID: 1158644988}
   box: {fileID: 1331786249}
 --- !u!1 &46423744
 GameObject:
@@ -595,6 +595,22 @@ PrefabInstance:
     - target: {fileID: 3135600631353971253, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_RootOrder
@@ -1204,6 +1220,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103279581}
   m_CullTransparentMesh: 1
+--- !u!114 &1158644988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3477846522547270397, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+  m_PrefabInstance: {fileID: 503349414}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130f35c5ffe2dfc469755ac83e84dcdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1211748525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyPrefab: {fileID: 9079915535133434231, guid: 070e4d34c06b6da4889447db144c236d, type: 3}
+  eggSpawner: {fileID: 6093218}
 --- !u!50 &1246434209
 Rigidbody2D:
   serializedVersion: 4
@@ -1589,7 +1617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4b028e45592004aa5b23785b38508f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 6
 --- !u!114 &1246434212
 MonoBehaviour:
   m_ObjectHideFlags: 0
