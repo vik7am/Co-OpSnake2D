@@ -17,7 +17,7 @@ public class EggSpawner : MonoBehaviour
     {
         eggsSpawned = 0;
         bounds = box.bounds;
-        SpawnEgg();
+        StartCoroutine(SpawnEgg());
     }
 
     public void SetCriticalState(bool state){

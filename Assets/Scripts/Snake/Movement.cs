@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     bool horizontalMovement;
     bool snakeMovement;
     float waitDuration;
+    [SerializeField]bool alternateInput;
 
     private void Start() {
         direction = Vector2.right;
@@ -22,7 +23,10 @@ public class Movement : MonoBehaviour
     {
         if(!snakeMovement)
             return;
-        MovementDirectionInput();
+        if(alternateInput)
+            MovementInputAlternate();
+        else
+            MovementInputNormal();
     }
 
     public void StartMovement(){
@@ -44,7 +48,7 @@ public class Movement : MonoBehaviour
         
     }
 
-    void MovementDirectionInput(){
+    void MovementInputNormal(){
         if(horizontalMovement){
             if (Input.GetKeyDown(KeyCode.W))
                 direction = Vector3.up;
@@ -55,6 +59,21 @@ public class Movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
                 direction = Vector3.left;
             else if (Input.GetKeyDown(KeyCode.D))
+                direction = Vector3.right;
+        }
+    }
+
+    void MovementInputAlternate(){
+        if(horizontalMovement){
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                direction = Vector3.up;
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+                direction = Vector3.down;
+        }
+        else{
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                direction = Vector3.left;
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
                 direction = Vector3.right;
         }
     }

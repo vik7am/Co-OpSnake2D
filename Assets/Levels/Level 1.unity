@@ -1538,7 +1538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a41f47f977e804d8be0498f8f1a1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyPrefab: {fileID: 9079915535133434231, guid: 070e4d34c06b6da4889447db144c236d, type: 3}
+  snakeBody: {fileID: 8419282614152361135, guid: 070e4d34c06b6da4889447db144c236d, type: 3}
   eggSpawner: {fileID: 6093218}
 --- !u!50 &1246434209
 Rigidbody2D:
@@ -1600,6 +1600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  alternateInput: 0
 --- !u!114 &1246434212
 MonoBehaviour:
   m_ObjectHideFlags: 0

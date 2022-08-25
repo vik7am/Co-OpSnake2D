@@ -4,12 +4,15 @@ public class Health : MonoBehaviour
 {
     bool alive;
     Snake snake;
-    [SerializeField] GameObject bodyPrefab;
+    [SerializeField] Body snakeBody;
+    //[SerializeField] GameObject bodyPrefab;
     [SerializeField] EggSpawner eggSpawner;
     SpecialAbilityManager managerSA;
+    SnakeController snakeController;
 
     private void Awake() {
         managerSA = GetComponent<SpecialAbilityManager>();
+        snakeController = GetComponent<SnakeController>();
     }
 
     void Start()
@@ -22,8 +25,11 @@ public class Health : MonoBehaviour
     }
 
     public void IncreseLength(int length){
-        for (int i = 0; i < length; i++)
-            snake.body.Add(Instantiate(bodyPrefab, snake.body[snake.body.Count -1].position, Quaternion.identity).transform);
+        for (int i = 0; i < length; i++){
+            Body body = Instantiate(snakeBody, snake.body[snake.body.Count -1].position, Quaternion.identity);
+            body.GetComponent<Body>().SetParent(snakeController);
+            snake.body.Add(body.transform);
+        }
         eggSpawner.SetCriticalState(false);
         if(managerSA.specialAbilityStatus(SpecialAbility.DISABLED))
             return;
@@ -35,7 +41,7 @@ public class Health : MonoBehaviour
             Destroy(snake.body[snake.body.Count-1].gameObject);
             snake.body.RemoveAt(snake.body.Count-1);
         }
-        if(snake.body.Count <= 2){
+        if(snake.body.Count < 3){
             eggSpawner.SetCriticalState(true);
         }
     }
