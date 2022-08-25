@@ -58,6 +58,9 @@ public class SnakeController : MonoBehaviour
             UpdateSpeed();
         }
     }
+    public void ActivateSA(SpecialAbility specialAbility){
+        managerSA.activateSpecialAbility(specialAbility);
+    }
 
     public void ResumeGame(){
         gamePauseUI.gameObject.SetActive(false);

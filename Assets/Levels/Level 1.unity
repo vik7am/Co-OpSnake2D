@@ -170,6 +170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   egg: {fileID: 1158644988}
   box: {fileID: 1331786249}
+  spawnCooldown: 5
+  specialSpawnCooldown: 25
 --- !u!1 &46423744
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,26 +593,6 @@ PrefabInstance:
     - target: {fileID: 3135600631353971253, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_Name
       value: Egg
-      objectReference: {fileID: 0}
-    - target: {fileID: 3135600631353971253, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_RootOrder
