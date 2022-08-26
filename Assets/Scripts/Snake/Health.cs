@@ -24,6 +24,13 @@ public class Health : MonoBehaviour
         this.snake = snake;
     }
 
+    public void CreateBody(){
+        Vector3 bodyPostion = snake.body[0].position - Vector3.right;
+        Body body = Instantiate(snakeBody, snake.body[snake.body.Count -1].position, Quaternion.identity);
+        body.GetComponent<Body>().SetParent(snakeController);
+        snake.body.Add(body.transform);
+    }
+
     public void IncreseLength(int length){
         for (int i = 0; i < length; i++){
             Body body = Instantiate(snakeBody, snake.body[snake.body.Count -1].position, Quaternion.identity);
@@ -31,6 +38,11 @@ public class Health : MonoBehaviour
             snake.body.Add(body.transform);
         }
         eggSpawner.SetCriticalState(false);
+        if(managerSA == null){
+            print("managersa null");
+            return;
+        }
+            
         if(managerSA.specialAbilityStatus(SpecialAbility.DISABLED))
             return;
         managerSA.UpdateSAColor();

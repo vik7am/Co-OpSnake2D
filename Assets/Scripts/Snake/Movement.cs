@@ -13,9 +13,13 @@ public class Movement : MonoBehaviour
     bool snakeMovement;
     float waitDuration;
     [SerializeField]bool alternateInput;
+    [SerializeField]bool startDirectionLeft;
 
     private void Start() {
-        direction = Vector2.right;
+        if(startDirectionLeft)
+            direction = Vector2.left;
+        else
+            direction = Vector2.right;
         waitDuration = 1.0f/speed;
     }
 

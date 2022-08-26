@@ -1,15 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake
-{
-    public List<Transform> body;
-    public Snake()
-    {
-        body = new List<Transform>();
-    }
-}
-
 public class SnakeController : MonoBehaviour
 {
     [SerializeField] int initialSnakeLength;
@@ -23,19 +14,22 @@ public class SnakeController : MonoBehaviour
 
     private void Awake() {
         snake = new Snake();
-        snake.body.Add(transform);
         movement = GetComponent<Movement>();
         health = GetComponent<Health>();
         scoreManager = GetComponent<ScoreManager>();
         managerSA = GetComponent<SpecialAbilityManager>();
-        movement.setSnake(snake);
-        health.setSnake(snake);
-        managerSA.setSnake(snake);
-        health.IncreseLength(initialSnakeLength);
+        
     }
 
     void Start()
     {
+        snake.body.Add(transform);
+        movement.setSnake(snake);
+        health.setSnake(snake);
+        managerSA.setSnake(snake);
+        health.CreateBody();
+        health.IncreseLength(initialSnakeLength - 1);
+        //managerSA.activateSpecialAbility(SpecialAbility.SHIELD);
         movement.StartMovement();
     }
 
@@ -51,13 +45,8 @@ public class SnakeController : MonoBehaviour
             movement.StopMovement();
             gamePauseUI.gameObject.SetActive(true);
         }
-        if(Input.GetKeyDown(KeyCode.Space)){
-            //managerSA.activateSpecialAbility(SpecialAbility.SHIELD);
-            //managerSA.activateSpecialAbility(SpecialAbility.SCORE_BOOST);
-            managerSA.activateSpecialAbility(SpecialAbility.SPEED_UP);
-            UpdateSpeed();
-        }
     }
+
     public void ActivateSA(SpecialAbility specialAbility){
         managerSA.activateSpecialAbility(specialAbility);
     }
@@ -73,6 +62,7 @@ public class SnakeController : MonoBehaviour
         health.KillSnake();
         movement.StopMovement();
         gameOverUI.gameObject.SetActive(true);
+        gameOverUI.ShowWinner(scoreManager.GetSnakeType());
     }
 
     public void IncreseLength(int length){
