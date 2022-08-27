@@ -4,9 +4,9 @@ using UnityEngine;
 public class SnakeController : MonoBehaviour
 {
     [SerializeField] Body snakeBody;
+    [SerializeField] Movement movement;
     [SerializeField] int snakeLength;
     Snake snake;
-    [SerializeField] Movement movement;
     SpecialAbilityManager managerSA;
 
     private void Awake() {
@@ -26,7 +26,6 @@ public class SnakeController : MonoBehaviour
     void CreateBody(){
         for(int i = 0; i < snakeLength; i++){
             Vector3 bodyPostion = snake.body[i].position - Vector3.right;
-            //print(bodyPostion);
             Body body = Instantiate(snakeBody, bodyPostion, Quaternion.identity);
             body.transform.SetParent(transform);
             snake.body.Add(body.transform);
@@ -72,7 +71,7 @@ public class SnakeController : MonoBehaviour
     }
 
     public void UpdateSpeed(){
-        movement.SpeedBoost(managerSA.GetSpeedMultiplier());
+        movement.UpdateMovementSpeed(managerSA.GetSpeedMultiplier());
     }
 
     public void StopSnake(){

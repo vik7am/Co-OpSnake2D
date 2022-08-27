@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public enum EggType{MASS_GAINER, MASS_BURNER, SHIELD, SCORE_BOOST, SPEED_UP}
+
 public class Egg : MonoBehaviour
 {
     EggSpawner eggSpawner;
     [SerializeField] int score;
     EggType eggType;
+    SpecialAbility specialAbility;
     SpriteRenderer sprite;
     [SerializeField]float despawnDuaration;
     float despawnTimer;
@@ -18,7 +19,7 @@ public class Egg : MonoBehaviour
 
     private void Update() {
         if(despawnTimer<=0){
-            eggSpawner.DespawnEgg();
+            DespawnEgg();
         }
         else
             despawnTimer -= Time.deltaTime;
@@ -28,15 +29,18 @@ public class Egg : MonoBehaviour
         return eggType;
     }
 
-    public void SetEggType(EggType eggType){
+    public void ResetEgg(EggType eggType, SpecialAbility specialAbility){
         switch(eggType){
             case EggType.MASS_GAINER : sprite.color = Color.white; break;
             case EggType.MASS_BURNER : sprite.color = Color.grey; break;
-            case EggType.SHIELD : sprite.color = Color.blue; break;
-            case EggType.SCORE_BOOST : sprite.color = Color.yellow; break;
-            case EggType.SPEED_UP : sprite.color = Color.red; break;
+        }
+        switch(specialAbility){
+            case SpecialAbility.SHIELD : sprite.color = Color.blue; break;
+            case SpecialAbility.SCORE_BOOST : sprite.color = Color.yellow; break;
+            case SpecialAbility.SPEED_UP : sprite.color = Color.red; break;
         }
         this.eggType = eggType;
+        this.specialAbility = specialAbility;
         despawnTimer = despawnDuaration;
     }
     
@@ -50,18 +54,24 @@ public class Egg : MonoBehaviour
         }
         else if(eggType == EggType.MASS_BURNER){
             snake.DecreaseLength(1);
-            
         }
-        else if(eggType == EggType.SHIELD){
+        else if(specialAbility == SpecialAbility.SHIELD){
             snake.ActivateSA(SpecialAbility.SHIELD);
         }
-        else if(eggType == EggType.SCORE_BOOST){
+        else if(specialAbility == SpecialAbility.SCORE_BOOST){
             snake.ActivateSA(SpecialAbility.SCORE_BOOST);
         }
-        else if(eggType == EggType.SPEED_UP){
+        else if(specialAbility == SpecialAbility.SPEED_UP){
             snake.ActivateSA(SpecialAbility.SPEED_UP);
             snake.UpdateSpeed();
         }
-        eggSpawner.DespawnEgg();
+        DespawnEgg();
     }
+
+    void DespawnEgg(){
+        eggSpawner.CreateNewEgg();
+        gameObject.SetActive(false);
+    }
+        
+    
 }

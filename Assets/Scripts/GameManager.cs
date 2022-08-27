@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     static GameManager instance;
     [SerializeField]SnakeController snakeController;
+    [SerializeField]EggSpawner eggSpawner;
     [SerializeField]GameOverUI gameOverUI;
     [SerializeField]GamePauseUI gamePauseUI;
     [SerializeField]ScoreUI scoreUI;
@@ -16,17 +15,15 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null){
+        if(instance == null)
             instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else{
+        else
             Destroy(gameObject);
-        }
     }
 
     public void GameOver(){
         snakeController.StopSnake();
+        eggSpawner.StopEggSpawner();
         gameOverUI.gameObject.SetActive(true);
     }
 
@@ -41,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     void CheckInterupts(){
         if(Input.GetKeyDown(KeyCode.Escape)){
+            if(gameOverUI.gameObject.activeSelf == true)
+                return;
             snakeController.StopSnake();
             gamePauseUI.gameObject.SetActive(true);
         }
