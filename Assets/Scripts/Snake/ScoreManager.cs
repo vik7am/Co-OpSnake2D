@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     public void IncreseScore(int score)
     {
         totalScore += score;
-        scoreUI.UpdateScore(totalScore, snakeType);
+        //scoreUI.UpdateScore(totalScore, snakeType);
     }
 
     public SnakeType GetSnakeType(){

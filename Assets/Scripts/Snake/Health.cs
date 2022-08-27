@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    bool alive;
+    /*bool alive;
     Snake snake;
     [SerializeField] Body snakeBody;
     //[SerializeField] GameObject bodyPrefab;
@@ -64,5 +64,5 @@ public class Health : MonoBehaviour
 
     public bool IsAlive(){
         return alive;
-    }
+    }*/
 }

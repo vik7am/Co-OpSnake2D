@@ -7,16 +7,31 @@ public enum SnakeType{
 }
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField] Text blueSnake;
+    int totalScore;
+    [SerializeField] Text snakeScore;
+    /*[SerializeField] Text blueSnake;
     [SerializeField] Text redSnake;
-    [SerializeField] Text greenSnake;
+    [SerializeField] Text greenSnake;*/
     bool multiplayer;
 
-    public void UpdateScore(int score, SnakeType snakeType){
+    private void Start() {
+        totalScore = 0;
+    }
+
+    /*public void UpdateScore(int score, SnakeType snakeType){
         switch(snakeType){
             case SnakeType.BLUE_SNAKE : blueSnake.text = "Score : "+score; break;
             case SnakeType.RED_SNAKE : redSnake.text = "Red Snake Score : "+score; break;
             case SnakeType.GREEN_SNAKE : greenSnake.text = "Green Snake Score : "+score; break;
         }
+    }*/
+
+    public void AddScore(int score){
+        totalScore += score;
+        UpdateScore();
+    }
+
+    void UpdateScore(){
+        snakeScore.text = "Score : " + totalScore;
     }
 }

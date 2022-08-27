@@ -38,7 +38,7 @@ public class EggSpawner : MonoBehaviour
         eggsSpawned++;
         if(eggsSpawned%5 == 0)
             spawnEggType = (EggType)Random.Range(2,5);
-        else if(criticalState)
+        else if(GameManager.Instance().CheckCriticalState())
             spawnEggType = EggType.MASS_GAINER;
         else
             spawnEggType = (EggType)Random.Range(0,2);

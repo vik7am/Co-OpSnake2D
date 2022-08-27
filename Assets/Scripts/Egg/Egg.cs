@@ -41,7 +41,7 @@ public class Egg : MonoBehaviour
     }
     
     private void OnTriggerEnter2D(Collider2D collision) {
-        SnakeController snake = collision.GetComponent<SnakeController>();
+        SnakeController snake = collision.GetComponentInParent<SnakeController>();
         if (snake == null)
             return;
         if(eggType == EggType.MASS_GAINER){

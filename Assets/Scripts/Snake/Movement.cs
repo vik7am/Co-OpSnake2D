@@ -13,13 +13,12 @@ public class Movement : MonoBehaviour
     bool snakeMovement;
     float waitDuration;
     [SerializeField]bool alternateInput;
-    [SerializeField]bool startDirectionLeft;
+
+    private void Awake() {
+        direction = Vector2.right;
+    }
 
     private void Start() {
-        if(startDirectionLeft)
-            direction = Vector2.left;
-        else
-            direction = Vector2.right;
         waitDuration = 1.0f/speed;
     }
 
@@ -49,7 +48,6 @@ public class Movement : MonoBehaviour
 
     public void SpeedBoost(float speedBoost){
         waitDuration = 1.0f/(speed * speedBoost);
-        
     }
 
     void MovementInputNormal(){
@@ -87,7 +85,7 @@ public class Movement : MonoBehaviour
         while (snakeMovement)
         {
             int snakeSize = snake.body.Count;
-            for (int i = 1; i < snakeSize ; i++)
+            for (int i = 1; i < snakeSize; i++)
                 snake.body[snakeSize -i].position = snake.body[snakeSize -(i+1)].position;
             transform.position += direction;
             if(previousDirection != direction){

@@ -15,7 +15,7 @@ public class GamePauseUI : MonoBehaviour
 
     void RestartGame()
     {
-        snake.ResumeGame();
+        GameManager.Instance().ResumeGame();
     }
 
     void ExitGame()
