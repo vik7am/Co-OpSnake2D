@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -9,6 +7,7 @@ public class LobbyUI : MonoBehaviour
     [SerializeField]Button startSingle;
     [SerializeField]Button startCoOp;
     [SerializeField]Button exitGame;
+
     void Awake()
     {
         startSingle.onClick.AddListener(StartSingle);
@@ -21,7 +20,7 @@ public class LobbyUI : MonoBehaviour
     }
 
     void StartCoOp(){
-
+        SceneManager.LoadScene(2);
     }
 
     void ExitGame(){

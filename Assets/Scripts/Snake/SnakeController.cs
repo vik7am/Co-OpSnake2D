@@ -1,12 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class Snake
+{
+    public List<Transform> body;
+    public Snake()
+    {
+        body = new List<Transform>();
+    }
+}
+
 public class SnakeController : MonoBehaviour
 {
     [SerializeField] Body snakeBody;
     [SerializeField] Movement movement;
     [SerializeField] int snakeLength;
     Snake snake;
+    [SerializeField] SnakeType snakeType;
     SpecialAbilityManager managerSA;
 
     private void Awake() {
@@ -63,7 +73,7 @@ public class SnakeController : MonoBehaviour
     public void IncreseScore(int score){
         if(managerSA.specialAbilityStatus(SpecialAbility.SCORE_BOOST))
             score = managerSA.GetSpecialScore(score);
-        GameManager.Instance().UpdateScore(score);
+        GameManager.Instance().UpdateScore(score, snakeType);
     }
 
     public bool CriticalState(){

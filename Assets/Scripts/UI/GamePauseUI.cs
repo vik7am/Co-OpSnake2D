@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GamePauseUI : MonoBehaviour
 {
@@ -20,6 +21,6 @@ public class GamePauseUI : MonoBehaviour
 
     void ExitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }

@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance;
-    [SerializeField]SnakeController snakeController;
-    [SerializeField]EggSpawner eggSpawner;
-    [SerializeField]GameOverUI gameOverUI;
-    [SerializeField]GamePauseUI gamePauseUI;
-    [SerializeField]ScoreUI scoreUI;
+    protected static GameManager instance;
+    [SerializeField] SnakeController snakeController;
+    [SerializeField] SnakeController redSnake;
+    [SerializeField] SnakeController greenSnake;
+    [SerializeField] EggSpawner eggSpawner;
+    [SerializeField] GameOverUI gameOverUI;
+    [SerializeField] GamePauseUI gamePauseUI;
+    [SerializeField] ScoreUI scoreUI;
+    [SerializeField] bool multiplayer;
 
-    public static GameManager Instance(){
+    public static GameManager Instance()
+    {
         return instance;
     }
 
@@ -22,13 +26,18 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver(){
-        snakeController.StopSnake();
+        if(multiplayer){
+            redSnake.StopSnake();
+            greenSnake.StopSnake();
+        }
+        else
+            snakeController.StopSnake();
         eggSpawner.StopEggSpawner();
         gameOverUI.gameObject.SetActive(true);
     }
 
-    public void UpdateScore(int score){
-        scoreUI.AddScore(score);
+    public void UpdateScore(int score, SnakeType snakeType){
+        scoreUI.UpdateScoreUI(score, snakeType);
     }
 
     void Update()
@@ -40,17 +49,30 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(gameOverUI.gameObject.activeSelf == true)
                 return;
-            snakeController.StopSnake();
+            if(multiplayer)
+            {
+                redSnake.StopSnake();
+                greenSnake.StopSnake();
+            }
+            else
+                snakeController.StopSnake();
             gamePauseUI.gameObject.SetActive(true);
         }
     }
 
     public void ResumeGame(){
         gamePauseUI.gameObject.SetActive(false);
+        if(multiplayer){
+            redSnake.StartSnake();
+            greenSnake.StartSnake();
+        }
         snakeController.StartSnake();
     }
 
     public bool CheckCriticalState(){
-        return snakeController.CriticalState();
+        if(multiplayer)
+            return (redSnake.CriticalState() || greenSnake.CriticalState());
+        else
+            return snakeController.CriticalState();
     }
 }

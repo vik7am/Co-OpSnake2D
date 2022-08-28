@@ -2,18 +2,10 @@ using UnityEngine;
 
 public class Body : MonoBehaviour
 {
-    //SnakeController snakeController;
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.GetComponentInParent<SnakeController>() == null)
+        SnakeController snakeController = other.GetComponentInParent<SnakeController>();
+        if(snakeController == null)
             return;
-        GetComponentInParent<SnakeController>().KillSnake();
+        snakeController.KillSnake();
     }
-
-    /*private void Awake() {
-        snakeController = GetComponentInParent<SnakeController>();
-    }*/
-
-    /*public void SetParent(SnakeController snakeController){
-        this.snakeController = snakeController;
-    }*/
 }
