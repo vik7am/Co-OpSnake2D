@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    protected static GameManager instance;
+    static GameManager instance;
     [SerializeField] SnakeController snakeController;
     [SerializeField] SnakeController redSnake;
     [SerializeField] SnakeController greenSnake;
@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ScoreUI scoreUI;
     [SerializeField] bool multiplayer;
 
-    public static GameManager Instance()
-    {
+    public static GameManager Instance(){
         return instance;
     }
 
@@ -55,8 +54,7 @@ public class GameManager : MonoBehaviour
         scoreUI.UpdateScoreUI(score, snakeType);
     }
 
-    void Update()
-    {
+    void Update(){
         CheckInterupts();
     }
 
@@ -83,7 +81,8 @@ public class GameManager : MonoBehaviour
             redSnake.StartSnake();
             greenSnake.StartSnake();
         }
-        snakeController.StartSnake();
+        else
+            snakeController.StartSnake();
     }
 
     public bool CheckCriticalState(){

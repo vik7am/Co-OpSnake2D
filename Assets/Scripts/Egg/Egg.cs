@@ -3,21 +3,23 @@ using UnityEngine;
 public class Egg : MonoBehaviour
 {
     EggSpawner eggSpawner;
-    [SerializeField] int score;
     EggType eggType;
     SpecialAbility specialAbility;
     SpriteRenderer sprite;
-    [SerializeField]float despawnDuaration;
     float despawnTimer;
     bool pauseDespawnTimner;
+    [SerializeField] int score;
+    [SerializeField] float despawnDuaration;
+    [SerializeField] int lengthIncrease;
+    [SerializeField] int lengthDecrease;
 
-    private void Awake() {
+    void Awake() {
         eggSpawner = GetComponentInParent<EggSpawner>();
         sprite = GetComponent<SpriteRenderer>();
         despawnTimer = despawnDuaration;
     }
 
-    private void Update() {
+    void Update() {
         if(pauseDespawnTimner)
             return;
         UpdateDespawnTimer();
@@ -54,16 +56,16 @@ public class Egg : MonoBehaviour
         despawnTimer = despawnDuaration;
     }
     
-    private void OnTriggerEnter2D(Collider2D collision) {
+    void OnTriggerEnter2D(Collider2D collision) {
         SnakeController snake = collision.GetComponentInParent<SnakeController>();
         if (snake == null)
             return;
         if(eggType == EggType.MASS_GAINER){
             snake.IncreseScore(score);
-            snake.IncreseLength(1);
+            snake.IncreseLength(lengthIncrease);
         }
         else if(eggType == EggType.MASS_BURNER){
-            snake.DecreaseLength(1);
+            snake.DecreaseLength(lengthDecrease);
         }
         else if(specialAbility == SpecialAbility.SHIELD){
             snake.ActivateSA(SpecialAbility.SHIELD);
@@ -82,6 +84,4 @@ public class Egg : MonoBehaviour
         eggSpawner.CreateNewEgg();
         gameObject.SetActive(false);
     }
-        
-    
 }

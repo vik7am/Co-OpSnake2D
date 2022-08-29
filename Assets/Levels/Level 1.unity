@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.03430319, b: 0.8113208, a: 0.19607843}
+  m_Color: {r: 0, g: 0.03430319, b: 0.8113208, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -493,6 +493,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &394424862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394424863}
+  - component: {fileID: 394424865}
+  - component: {fileID: 394424864}
+  m_Layer: 5
+  m_Name: Result
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &394424863
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394424862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2068080171}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &394424864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394424862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 30
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Result
+--- !u!222 &394424865
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394424862}
+  m_CullTransparentMesh: 1
 --- !u!1 &458705117
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeScore: {fileID: 821697525}
+  redSnake: {fileID: 0}
+  greenSnake: {fileID: 0}
 --- !u!1001 &503349414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,13 +675,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Egg
       objectReference: {fileID: 0}
-    - target: {fileID: 6611766705162407486, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270, type: 3}
+    - target: {fileID: 3477846522547270397, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+      propertyPath: lengthDecrease
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477846522547270397, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+      propertyPath: lengthIncrease
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -759,7 +844,7 @@ RectTransform:
   m_Children:
   - {fileID: 1922205983}
   m_Father: {fileID: 2068080171}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1117,7 +1202,7 @@ RectTransform:
   m_Children:
   - {fileID: 894565548}
   m_Father: {fileID: 2068080171}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2152,6 +2237,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1846882974}
+  - {fileID: 394424863}
   - {fileID: 614045823}
   - {fileID: 1103279582}
   m_Father: {fileID: 1211748529}
@@ -2175,7 +2261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.19607843}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2214,6 +2300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restart: {fileID: 614045824}
   exit: {fileID: 1103279583}
+  result: {fileID: 394424864}
 --- !u!1 &2082296706
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,10 +2331,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeController: {fileID: 1473774053}
+  redSnake: {fileID: 0}
+  greenSnake: {fileID: 0}
   eggSpawner: {fileID: 6093218}
   gameOverUI: {fileID: 2068080174}
   gamePauseUI: {fileID: 70589249}
   scoreUI: {fileID: 458705121}
+  multiplayer: 0
 --- !u!4 &2082296708
 Transform:
   m_ObjectHideFlags: 0
@@ -2316,6 +2406,14 @@ PrefabInstance:
     - target: {fileID: 4365553318518899956, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365553320107643123, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365553320107643123, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4365553320107643124, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
       propertyPath: customkeycodeup

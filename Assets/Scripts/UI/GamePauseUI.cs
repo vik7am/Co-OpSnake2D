@@ -14,13 +14,11 @@ public class GamePauseUI : MonoBehaviour
         exit.onClick.AddListener(ExitGame);
     }
 
-    void RestartGame()
-    {
+    void RestartGame(){
         GameManager.Instance().ResumeGame();
     }
 
-    void ExitGame()
-    {
+    void ExitGame(){
         SceneManager.LoadScene(0);
     }
 }

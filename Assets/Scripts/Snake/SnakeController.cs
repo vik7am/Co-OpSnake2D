@@ -4,22 +4,21 @@ using UnityEngine;
 public class Snake
 {
     public List<Transform> body;
-    public Snake()
-    {
+    public Snake(){
         body = new List<Transform>();
     }
 }
 
 public class SnakeController : MonoBehaviour
 {
+    Snake snake;
+    SpecialAbilityManager managerSA;
     [SerializeField] Body snakeBody;
     [SerializeField] Movement movement;
     [SerializeField] int snakeLength;
-    Snake snake;
     [SerializeField] SnakeType snakeType;
-    SpecialAbilityManager managerSA;
 
-    private void Awake() {
+    void Awake() {
         snake = new Snake();
         managerSA = GetComponent<SpecialAbilityManager>();
     }

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [Range(1,20)]
-    [SerializeField] int speed;
     Vector3 direction;
     Vector3 previousDirection;
     Coroutine coroutine;
@@ -12,18 +10,23 @@ public class Movement : MonoBehaviour
     bool horizontalMovement;
     bool snakeMovement;
     float waitDuration;
+    [Range(1,20)]
+    [SerializeField] int speed;
     [SerializeField]bool alternateInput;
+    [SerializeField]bool disableInput;
 
-    private void Awake() {
+    void Awake() {
         direction = Vector2.right;
     }
 
-    private void Start() {
+    void Start() {
         waitDuration = 1.0f/speed;
     }
 
-    private void Update()
+    void Update()
     {
+        if(disableInput)
+            return;
         if(!snakeMovement)
             return;
         if(alternateInput)

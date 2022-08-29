@@ -10,16 +10,16 @@ public class SpecialAbilityManager : MonoBehaviour
     bool shield;
     bool scoreBoost;
     bool speedUp;
+    bool gamePaused;
+    float remainingDurationSA;
+    Snake snake;
     SpecialAbility activeSA;
+    SpriteRenderer sprite;
     [SerializeField]float durationSA;
     [SerializeField]int scoreMultiplier;
     [SerializeField]float speedMultiplier;
-    float remainingDurationSA;
-    Snake snake;
-    SpriteRenderer sprite;
-    bool gamePaused;
 
-    private void Awake() {
+    void Awake() {
         sprite = GetComponent<SpriteRenderer>();
     }
 

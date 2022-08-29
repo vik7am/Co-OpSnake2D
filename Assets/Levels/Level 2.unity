@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.03430319, b: 0.8113208, a: 0.19607843}
+  m_Color: {r: 0, g: 0.03430319, b: 0.8113208, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -598,6 +598,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Egg
       objectReference: {fileID: 0}
+    - target: {fileID: 3477846522547270397, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+      propertyPath: lengthDecrease
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477846522547270397, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
+      propertyPath: lengthIncrease
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -738,7 +746,7 @@ GameObject:
   - component: {fileID: 535220285}
   - component: {fileID: 535220284}
   m_Layer: 0
-  m_Name: CoOpGameManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -790,7 +798,7 @@ GameObject:
   - component: {fileID: 536376603}
   - component: {fileID: 536376602}
   m_Layer: 5
-  m_Name: Message
+  m_Name: Result
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -813,7 +821,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &536376602
 MonoBehaviour:
@@ -841,14 +849,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MaxSize: 30
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Result
 --- !u!222 &536376603
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1288,7 +1296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4365553320107643126, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
       propertyPath: m_Color.g
-      value: 0.5882353
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
@@ -2533,7 +2541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4365553320107643126, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
       propertyPath: m_Color.r
-      value: 0.78431374
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
@@ -2603,7 +2611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.19607843}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2642,3 +2650,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restart: {fileID: 614045824}
   exit: {fileID: 1103279583}
+  result: {fileID: 536376602}

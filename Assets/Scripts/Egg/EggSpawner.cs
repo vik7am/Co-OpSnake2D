@@ -4,21 +4,19 @@ using System.Collections;
 public enum EggType{MASS_GAINER, MASS_BURNER, SPECIAL}
 public class EggSpawner : MonoBehaviour
 {
+    int eggsSpawned;
+    float randomCooldown;
+    Bounds bounds;
+    Coroutine coroutine;
     [SerializeField] Egg egg;
     [SerializeField] BoxCollider2D box;
-    Bounds bounds;
     [SerializeField] float minSpawnCooldown;
     [SerializeField] float maxSpawnCooldown;
     [SerializeField] int specialEggSpawnCooldown;
-    int eggsSpawned;
-    float randomCooldown;
-    Coroutine coroutine;
-    bool spawnerPaused;
-
+    
     void Start()
     {
         eggsSpawned = 0;
-        spawnerPaused = false;
         bounds = box.bounds;
         CreateNewEgg();
     }
@@ -54,20 +52,20 @@ public class EggSpawner : MonoBehaviour
     {
         randomCooldown = Random.Range(minSpawnCooldown, maxSpawnCooldown);
         yield return new WaitForSeconds(randomCooldown);
-        if(spawnerPaused)
-            eggsSpawned--;
-        else
-            egg.gameObject.SetActive(true);
+        egg.gameObject.SetActive(true);
         coroutine = null;
     }
 
     public void PauseEggSpawner(){
-        spawnerPaused = true;
         egg.SetPauseDespawnTimer(true);
+        if(coroutine != null){
+            StopCoroutine(coroutine);
+            eggsSpawned--;
+            coroutine = null;
+        }
     }
 
     public void ResumeEggSpawner(){
-        spawnerPaused = false;
         egg.SetPauseDespawnTimer(false);
         if(egg.gameObject.activeSelf)
             return;

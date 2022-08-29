@@ -18,13 +18,11 @@ public class GameOverUI : MonoBehaviour
         result.text = message;
     }
 
-    void RestartGame()
-    {
+    void RestartGame(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void ExitGame()
-    {
+    void ExitGame(){
         SceneManager.LoadScene(0);
     }
 }
