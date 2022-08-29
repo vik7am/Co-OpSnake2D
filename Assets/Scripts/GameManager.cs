@@ -25,15 +25,30 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void GameOver(){
+    public void GameOver(SnakeType snakeType){
         if(multiplayer){
             redSnake.StopSnake();
             greenSnake.StopSnake();
         }
         else
             snakeController.StopSnake();
-        eggSpawner.StopEggSpawner();
+        eggSpawner.PauseEggSpawner();
+        string result = GetResult(snakeType);
+        gameOverUI.UpdateUI(result);
         gameOverUI.gameObject.SetActive(true);
+    }
+
+    string GetResult(SnakeType looser){
+        string message = "";
+        switch(looser){
+            case SnakeType.BLUE_SNAKE :
+                message = "Your Score : " + scoreUI.GetScore(SnakeType.BLUE_SNAKE) + " points"; break;
+            case SnakeType.RED_SNAKE : 
+                message = "Green Snake Won with " + scoreUI.GetScore(SnakeType.GREEN_SNAKE) + " points"; break;
+            case SnakeType.GREEN_SNAKE : 
+                message = "Red Snake Won with " + scoreUI.GetScore(SnakeType.RED_SNAKE) + " points"; break;
+        }
+        return message;
     }
 
     public void UpdateScore(int score, SnakeType snakeType){
@@ -49,6 +64,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(gameOverUI.gameObject.activeSelf == true)
                 return;
+            eggSpawner.PauseEggSpawner();
             if(multiplayer)
             {
                 redSnake.StopSnake();
@@ -62,6 +78,7 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame(){
         gamePauseUI.gameObject.SetActive(false);
+        eggSpawner.ResumeEggSpawner();
         if(multiplayer){
             redSnake.StartSnake();
             greenSnake.StartSnake();

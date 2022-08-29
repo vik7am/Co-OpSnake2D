@@ -17,13 +17,20 @@ public class SpecialAbilityManager : MonoBehaviour
     float remainingDurationSA;
     Snake snake;
     SpriteRenderer sprite;
+    bool gamePaused;
 
     private void Awake() {
         sprite = GetComponent<SpriteRenderer>();
     }
 
+    public void SetGamePaused(bool status){
+        gamePaused = status;
+    }
+
     void Update()
     {
+        if(gamePaused)
+            return;
         if(activeSA != SpecialAbility.DISABLED){
             remainingDurationSA -= Time.deltaTime;
             if(remainingDurationSA <= 0){

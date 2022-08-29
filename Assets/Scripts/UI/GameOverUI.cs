@@ -6,7 +6,7 @@ public class GameOverUI : MonoBehaviour
 {
     [SerializeField]Button restart;
     [SerializeField]Button exit;
-    //[SerializeField]Text message;
+    [SerializeField]Text result;
 
     void Awake()
     {
@@ -14,13 +14,9 @@ public class GameOverUI : MonoBehaviour
         exit.onClick.AddListener(ExitGame);
     }
 
-    /*public void ShowWinner(SnakeType looser){
-        switch(looser){
-            case SnakeType.RED_SNAKE : message.text = "Green Snake Won"; break;
-            case SnakeType.GREEN_SNAKE : message.text = "Red Snake Won"; break;
-            default : print("Error!"); break;
-        }
-    }*/
+    public void UpdateUI(string message){
+        result.text = message;
+    }
 
     void RestartGame()
     {

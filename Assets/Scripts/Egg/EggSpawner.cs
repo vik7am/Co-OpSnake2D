@@ -13,12 +13,12 @@ public class EggSpawner : MonoBehaviour
     int eggsSpawned;
     float randomCooldown;
     Coroutine coroutine;
-    bool gameOver;
+    bool spawnerPaused;
 
     void Start()
     {
         eggsSpawned = 0;
-        gameOver = false;
+        spawnerPaused = false;
         bounds = box.bounds;
         CreateNewEgg();
     }
@@ -26,8 +26,6 @@ public class EggSpawner : MonoBehaviour
     public void CreateNewEgg(){
         EggType eggType;
         SpecialAbility specialAbility = SpecialAbility.DISABLED;
-        if(gameOver)
-            return;
         egg.transform.position =  GetRandomPosition();
         eggsSpawned++;
         if(eggsSpawned % specialEggSpawnCooldown == 0){
@@ -56,13 +54,23 @@ public class EggSpawner : MonoBehaviour
     {
         randomCooldown = Random.Range(minSpawnCooldown, maxSpawnCooldown);
         yield return new WaitForSeconds(randomCooldown);
-        egg.gameObject.SetActive(true);
+        if(spawnerPaused)
+            eggsSpawned--;
+        else
+            egg.gameObject.SetActive(true);
         coroutine = null;
     }
 
-    public void StopEggSpawner(){
-        if(coroutine != null)
-            StopCoroutine(coroutine);
-        gameOver = true;
+    public void PauseEggSpawner(){
+        spawnerPaused = true;
+        egg.SetPauseDespawnTimer(true);
+    }
+
+    public void ResumeEggSpawner(){
+        spawnerPaused = false;
+        egg.SetPauseDespawnTimer(false);
+        if(egg.gameObject.activeSelf)
+            return;
+        CreateNewEgg();
     }
 }

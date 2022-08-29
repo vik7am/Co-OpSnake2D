@@ -37,4 +37,22 @@ public class ScoreUI : MonoBehaviour
             greenSnake.text = "Green Snake : " + totalScoreGreen; break;
         }
     }
+
+    public SnakeType GetWinner(){
+        if(totalScoreRed == totalScoreGreen)
+            return SnakeType.BLUE_SNAKE;
+        else if(totalScoreRed > totalScoreGreen)
+            return SnakeType.RED_SNAKE;
+        else
+            return SnakeType.GREEN_SNAKE;
+    }
+
+    public int GetScore(SnakeType snakeType){
+        switch(snakeType){
+            case SnakeType.BLUE_SNAKE : return totalScore;
+            case SnakeType.RED_SNAKE : return totalScoreRed;
+            case SnakeType.GREEN_SNAKE : return totalScoreGreen;
+            default : return 0;
+        }
+    }
 }

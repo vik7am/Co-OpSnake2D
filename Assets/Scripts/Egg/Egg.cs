@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Egg : MonoBehaviour
 {
     EggSpawner eggSpawner;
@@ -10,6 +9,7 @@ public class Egg : MonoBehaviour
     SpriteRenderer sprite;
     [SerializeField]float despawnDuaration;
     float despawnTimer;
+    bool pauseDespawnTimner;
 
     private void Awake() {
         eggSpawner = GetComponentInParent<EggSpawner>();
@@ -18,6 +18,16 @@ public class Egg : MonoBehaviour
     }
 
     private void Update() {
+        if(pauseDespawnTimner)
+            return;
+        UpdateDespawnTimer();
+    }
+
+    public void SetPauseDespawnTimer(bool status){
+        pauseDespawnTimner = status;
+    }
+
+    void UpdateDespawnTimer(){
         if(despawnTimer<=0){
             DespawnEgg();
         }

@@ -67,7 +67,7 @@ public class SnakeController : MonoBehaviour
     public void KillSnake(){
         if(managerSA.specialAbilityStatus(SpecialAbility.SHIELD))
             return;
-        GameManager.Instance().GameOver();
+        GameManager.Instance().GameOver(snakeType);
     }
 
     public void IncreseScore(int score){
@@ -86,9 +86,11 @@ public class SnakeController : MonoBehaviour
 
     public void StopSnake(){
         movement.StopMovement();
+        managerSA.SetGamePaused(true);
     }
 
     public void StartSnake(){
         movement.StartMovement();
+        managerSA.SetGamePaused(false);
     }
 }
