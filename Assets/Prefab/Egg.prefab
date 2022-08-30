@@ -124,3 +124,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 1
   despawnDuaration: 5
+  massGainerValue: 1
+  massBurnerValue: 1

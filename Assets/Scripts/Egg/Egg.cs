@@ -10,8 +10,8 @@ public class Egg : MonoBehaviour
     bool pauseDespawnTimner;
     [SerializeField] int score;
     [SerializeField] float despawnDuaration;
-    [SerializeField] int lengthIncrease;
-    [SerializeField] int lengthDecrease;
+    [SerializeField] int massGainerValue;
+    [SerializeField] int massBurnerValue;
 
     void Awake() {
         eggSpawner = GetComponentInParent<EggSpawner>();
@@ -37,10 +37,6 @@ public class Egg : MonoBehaviour
             despawnTimer -= Time.deltaTime;
     }
 
-    public EggType GetEggType(){
-        return eggType;
-    }
-
     public void ResetEgg(EggType eggType, SpecialAbility specialAbility){
         switch(eggType){
             case EggType.MASS_GAINER : sprite.color = Color.white; break;
@@ -55,29 +51,56 @@ public class Egg : MonoBehaviour
         this.specialAbility = specialAbility;
         despawnTimer = despawnDuaration;
     }
-    
+
+    /*public EggType GetEggType(){
+        return eggType;
+    }
+    public SpecialAbility GetEggSpecialAbility(){
+        return specialAbility;
+    }
+
+    public int GetMassGainerValue(){
+        return massGainerValue;
+    }
+
+    public int GetMassBurnerValue(){
+        return massBurnerValue;
+    }
+
+    public int GetScore(){
+        return score;
+    }*/
+
     void OnTriggerEnter2D(Collider2D collision) {
         SnakeController snake = collision.GetComponentInParent<SnakeController>();
         if (snake == null)
             return;
-        if(eggType == EggType.MASS_GAINER){
-            snake.IncreseScore(score);
-            snake.IncreseLength(lengthIncrease);
-        }
-        else if(eggType == EggType.MASS_BURNER){
-            snake.DecreaseLength(lengthDecrease);
-        }
-        else if(specialAbility == SpecialAbility.SHIELD){
-            snake.ActivateSA(SpecialAbility.SHIELD);
-        }
-        else if(specialAbility == SpecialAbility.SCORE_BOOST){
-            snake.ActivateSA(SpecialAbility.SCORE_BOOST);
-        }
-        else if(specialAbility == SpecialAbility.SPEED_UP){
-            snake.ActivateSA(SpecialAbility.SPEED_UP);
-            snake.UpdateSpeed();
-        }
+        CheckEggType(snake);
         DespawnEgg();
+    }
+
+    void CheckEggType(SnakeController snake){
+        switch(eggType){
+            case EggType.MASS_GAINER :
+                snake.IncreseScore(score);
+                snake.IncreseLength(massGainerValue); break;
+            case EggType.MASS_BURNER :
+                snake.DecreaseLength(massBurnerValue); break;
+            case EggType.SPECIAL :
+                CheckEggSpecialAbility(snake); break;
+        }
+    }
+
+    void CheckEggSpecialAbility(SnakeController snake){
+        switch(specialAbility){
+            case SpecialAbility.SHIELD :
+                snake.ActivateSA(SpecialAbility.SHIELD); break;
+            case SpecialAbility.SCORE_BOOST :
+                snake.ActivateSA(SpecialAbility.SCORE_BOOST); break;
+            case SpecialAbility.SPEED_UP :
+                snake.ActivateSA(SpecialAbility.SPEED_UP);
+                snake.UpdateSpeed(); break;
+        }
     }
 
     void DespawnEgg(){

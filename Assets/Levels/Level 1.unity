@@ -675,14 +675,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Egg
       objectReference: {fileID: 0}
-    - target: {fileID: 3477846522547270397, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: lengthDecrease
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477846522547270397, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
-      propertyPath: lengthIncrease
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7229275045252015542, guid: ec3908ced3e77114386f40b29901b5d2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1656,6 +1648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1331786248}
   - component: {fileID: 1331786249}
+  - component: {fileID: 1331786250}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -1707,6 +1700,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 28, y: 14}
   m_EdgeRadius: 0
+--- !u!114 &1331786250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331786247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4c3ef7da4d44a4882b9294713074c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1473774053 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4365553318518899957, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
@@ -2407,14 +2412,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4365553320107643123, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4365553320107643123, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 4365553320107643124, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
       propertyPath: customkeycodeup
       value: 119
@@ -2423,5 +2420,6 @@ PrefabInstance:
       propertyPath: box
       value: 
       objectReference: {fileID: 1331786249}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4365553320107643125, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a4a9d510d7aea8949a9ad473b943a98b, type: 3}
