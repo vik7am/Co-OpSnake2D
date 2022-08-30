@@ -53,6 +53,8 @@ public class Movement : MonoBehaviour
         waitDuration = 1.0f/(speed * speedBoost);
     }
 
+    // horizontalmovement flag ignores same or opposite direction inputs
+    // to prevent snake from rotating 180 degree.
     void MovementInputNormal(){
         if(horizontalMovement){
             if (Input.GetKeyDown(KeyCode.W))

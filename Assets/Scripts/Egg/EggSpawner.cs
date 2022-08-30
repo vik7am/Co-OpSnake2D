@@ -26,10 +26,12 @@ public class EggSpawner : MonoBehaviour
         SpecialAbility specialAbility = SpecialAbility.DISABLED;
         egg.transform.position =  GetRandomPosition();
         eggsSpawned++;
+        // If specialEggCollodown = 5 It spawns special egg after 4 normal egg spawn. 
         if(eggsSpawned % specialEggSpawnCooldown == 0){
             eggType = EggType.SPECIAL;
             specialAbility = (SpecialAbility)Random.Range(1, 4);
         }
+        // Only spawns mass gainer egg if snake size is small.
         else if(GameManager.Instance().CheckCriticalState()){
             eggType = EggType.MASS_GAINER;
         }
@@ -56,6 +58,7 @@ public class EggSpawner : MonoBehaviour
         coroutine = null;
     }
 
+    // Cancels the egg spawn if cooldown is active
     public void PauseEggSpawner(){
         egg.SetPauseDespawnTimer(true);
         if(coroutine != null){
@@ -65,6 +68,7 @@ public class EggSpawner : MonoBehaviour
         }
     }
 
+    // Spawns a new egg if no egg is active
     public void ResumeEggSpawner(){
         egg.SetPauseDespawnTimer(false);
         if(egg.gameObject.activeSelf)

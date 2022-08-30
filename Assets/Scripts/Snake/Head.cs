@@ -1,5 +1,9 @@
 using UnityEngine;
 
+public enum SnakeType{
+    BLUE_SNAKE, RED_SNAKE, GREEN_SNAKE
+}
+
 public class Head : MonoBehaviour
 {
     SnakeController snakeController;

@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum SnakeType{
-    BLUE_SNAKE, RED_SNAKE, GREEN_SNAKE
-}
 public class ScoreUI : MonoBehaviour
 {
     int totalScore;
@@ -36,15 +33,6 @@ public class ScoreUI : MonoBehaviour
             totalScoreGreen += score;
             greenSnake.text = "Green Snake : " + totalScoreGreen; break;
         }
-    }
-
-    public SnakeType GetWinner(){
-        if(totalScoreRed == totalScoreGreen)
-            return SnakeType.BLUE_SNAKE;
-        else if(totalScoreRed > totalScoreGreen)
-            return SnakeType.RED_SNAKE;
-        else
-            return SnakeType.GREEN_SNAKE;
     }
 
     public int GetScore(SnakeType snakeType){

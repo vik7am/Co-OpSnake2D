@@ -52,25 +52,6 @@ public class Egg : MonoBehaviour
         despawnTimer = despawnDuaration;
     }
 
-    /*public EggType GetEggType(){
-        return eggType;
-    }
-    public SpecialAbility GetEggSpecialAbility(){
-        return specialAbility;
-    }
-
-    public int GetMassGainerValue(){
-        return massGainerValue;
-    }
-
-    public int GetMassBurnerValue(){
-        return massBurnerValue;
-    }
-
-    public int GetScore(){
-        return score;
-    }*/
-
     void OnTriggerEnter2D(Collider2D collision) {
         SnakeController snake = collision.GetComponentInParent<SnakeController>();
         if (snake == null)
